@@ -279,3 +279,48 @@ export const genericExtends = () => {
     console.log(person);
   });
 };
+
+/* *************** GENERIC TYPES WITH EXTENDS **************** */
+
+export const genericTypesWithExtends = () => {
+  interface Person {
+    name: string;
+  }
+
+  interface Student extends Person {
+    age: number;
+  }
+
+  interface PostGraduadeStudent extends Person {
+    age: number;
+    projects: string[];
+  }
+
+  // type StudentInfo<T extends Student = Student> = {
+  //   data: T
+  //   grades: number[]
+  // }
+
+  type StudentInfo<T extends any = Student> = T extends Student
+    ? {
+        data: T;
+        grades: number[];
+      }
+    : string; //Ternary operator extends example
+
+  type Car = { engine: string };
+
+  function logStudentInfo(info: StudentInfo<Student>) {
+    console.log(info)
+    console.log(info)
+  }
+
+  const info = {
+    data: {
+      name: "Filip",
+      age: 30
+    },
+    grades: [1,2,3,1]
+  }
+  logStudentInfo(info)
+};

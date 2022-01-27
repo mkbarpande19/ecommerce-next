@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { extendInterface, extendType, genericArray, genericExtends, genericType, narrowing, play } from "../playground";
+import { extendInterface, extendType, genericArray, genericExtends, genericType, genericTypesWithExtends, narrowing, play } from "../playground";
 
 export default function Home() {
   useEffect(() => {
@@ -10,6 +10,7 @@ export default function Home() {
     genericArray(); // example of generic array
     genericType(); // example of generic type
     genericExtends(); // example of generic extends
+    genericTypesWithExtends(); // example of generic types with extends
   }, []);
   return <div>He</div>;
 }
