@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { extendInterface, extendType, narrowing, play } from "../playground";
+import { extendInterface, extendType, genericArray, genericType, narrowing, play } from "../playground";
 
 export default function Home() {
   useEffect(() => {
@@ -7,6 +7,8 @@ export default function Home() {
     narrowing(); // Narrowing function with conditional statements also we can use switch cases
     extendInterface(); // example of extending interface for the same type of data.
     extendType(); // example of extending type
+    genericArray(); // example of generic array
+    genericType(); // example of generic type
   }, []);
   return <div>He</div>;
 }

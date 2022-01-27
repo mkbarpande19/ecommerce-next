@@ -133,7 +133,6 @@ type RaceCar = {
     type Car = RaceCar | CityCar
 */
 
-
 // *************** Union Narrowing *********************
 
 /*
@@ -170,7 +169,6 @@ type RaceCar = {
 // Use "as" to type cast the variables
 // USE "<>" braces to type cast'
 
-
 // ********************  INTERFACE NARROWING *******************
 /*
 function logPersonInfo(human: Human) {
@@ -195,4 +193,42 @@ export const extendType = () => {
   };
 
   console.log("\n car", car);
+};
+
+// /* ************** ARRAY GENERIC ************** */
+
+export const genericArray = () => {
+  const iterate = (items: Array<string>) =>
+    items.forEach((item) => {
+      console.log(item.toUpperCase());
+    });
+
+  iterate(["Mayur", "Kalidas", "Barpande"]);
+};
+
+/* ************** GENERIC EXTENDS *************** */
+
+class Logger<T> {
+  log(items: Array<T>, callback: (i: T) => void) {
+    items.forEach((item) => {
+      callback(item);
+    });
+  }
+}
+
+export const genericType = () => {
+  const logger = new Logger<string>();
+
+  const cars = ["audi", "skoda", "citroen"];
+  logger.log(cars, (car) => {
+    console.log(car);
+  });
+
+  const logger2 = new Logger<number>();
+
+  const numbers = [1, 2, 3, 4];
+  logger2.log(numbers, (num) => {
+    console.log(num);
+  });
+
 };
