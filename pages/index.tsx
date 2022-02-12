@@ -17,9 +17,10 @@ export async function getStaticProps() {
 export default function Home({
   products,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  getAllProducts();
   return (
     <div>
-      <span>{products} </span>
+      <span>{JSON.stringify(products)} </span>
     </div>
   );
 }
