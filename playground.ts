@@ -303,9 +303,9 @@ export const genericTypesWithExtends = () => {
 
   type StudentInfo<T extends any = Student> = T extends Student
     ? {
-        data: T;
-        grades: number[];
-      }
+      data: T;
+      grades: number[];
+    }
     : string; //Ternary operator extends example
 
   type Car = { engine: string };
@@ -320,7 +320,88 @@ export const genericTypesWithExtends = () => {
       name: "Filip",
       age: 30
     },
-    grades: [1,2,3,1]
+    grades: [1, 2, 3, 1]
   }
   logStudentInfo(info)
 };
+
+/* ***************** SINGLE TYPE ARRAY ************** */
+
+export const SingleTypeArr = () => {
+
+  interface Person {
+    name: string
+  }
+
+  type SingleType<T> = T extends any[] ? T[number] : unknown
+
+  type Type1 = SingleType<string[]>
+  type Type2 = SingleType<number[]>
+  type Type3 = SingleType<Person>
+
+  type Type4 = string[][number]
+}
+
+/* ************* ARRAY INDEX TYPES ************** */
+
+export const ArrayIndexTypesFn = () => {
+
+  interface Person {
+    name: string
+  }
+
+  type CustomArray<T = any> = {
+    [index: number]: T
+  }
+
+  const items: CustomArray = ["1", "2", "3"]
+
+  type Single = CustomArray[number]
+}
+
+/* *************** MAPPERD TYPES *************** */
+
+export const MappedTypesFn = () => {
+
+  interface Person {
+    name: string
+  }
+
+  type CustomObject = {
+    [key: string]: string | number | Person
+  }
+
+  const person: CustomObject = {
+    "name": "ASasds",
+    "age": 27,
+    Person: {
+      name: "Mayur"
+    }
+    // "age":2 error is displayed here as custom object accepts only string type of data
+  }
+}
+
+/* ************** TYPE OF KeyWord & INFER KeyWord*************** */
+
+export const TypeOfFunction = () => {
+
+  interface Person {
+    name: string,
+    age: number
+  }
+  function logger() {
+    return "WELCOME"
+  }
+
+  type ReturnType<T> = T extends () => infer R ? R : number
+
+  const loggerReturn: ReturnType<typeof logger> = "INFER"
+
+  const keyLogger: typeof logger = () => "Welcome to TS"
+
+  // keyof 
+
+  type PersonKey = keyof Person
+
+  const personKey: PersonKey = "name"
+}
