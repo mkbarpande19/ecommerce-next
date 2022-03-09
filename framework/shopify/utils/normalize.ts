@@ -1,5 +1,5 @@
 // Normalize products
-import { Product } from "../../common/types/products";
+import { Product } from "@common/types/products";
 import { ImageEdge, Product as ShopifyProduct } from "../schema";
 
 
