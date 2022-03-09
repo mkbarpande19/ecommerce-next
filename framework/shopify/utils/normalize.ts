@@ -1,7 +1,7 @@
 // Normalize products
-
-import { url } from "inspector";
+import { Product } from "../../common/types/products";
 import { ImageEdge, Product as ShopifyProduct } from "../schema";
+
 
 const normalizeProductImages = ({ edges }: { edges: Array<ImageEdge> }) =>
   edges.map(({ node: { originalSrc: url, ...rest } }) => ({
@@ -9,7 +9,7 @@ const normalizeProductImages = ({ edges }: { edges: Array<ImageEdge> }) =>
     ...rest,
   }));
 
-export function normalizeProduct(productNode: ShopifyProduct): any {
+export function normalizeProduct(productNode: ShopifyProduct): Product {
   const {
     id,
     title: name,
